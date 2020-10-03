@@ -1,4 +1,2 @@
 Playground
 ======
-
-![play](./playground.gif)
