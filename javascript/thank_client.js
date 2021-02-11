@@ -2,16 +2,16 @@
  * A client-side project using jquery to support thanking system
  * on a thread for a free forum builder
  * https://www.forumotion.com/
-*/
+ */
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Because Forumotion assign global var for user's data under _userdata obj we can use it
   // insted of traversing the DOM to find current authed user info, however i needed to assign
   // an in memory enum because they might fall back the object.
   const AUTHED_USER_ENUM = {
     USER_NAME: _userdata["username"] || "Anonymous",
     IS_LOGGED_IN: _userdata.session_logged_in,
-    USER_ID: _userdata["user_id"] || undefined
+    USER_ID: _userdata["user_id"] || undefined,
   };
 
   if (!AUTHED_USER_ENUM.IS_LOGGED_IN) return;
@@ -28,7 +28,7 @@ $(document).ready(function() {
   const $POSTBODY_THREAD_REF = $POSTBODY_REF.find(".postbody");
 
   // async get thanks data then append
-  getThanksDataForThread().then(response => {
+  getThanksDataForThread().then((response) => {
     const { data } = response;
 
     renderThanksDataToDom(data);
@@ -74,9 +74,7 @@ $(document).ready(function() {
       thankedUsersList += `<div class="user_name">${user_thanked.user_name}</div>`;
     }
 
-    $POSTBODY_THREAD_REF
-        .find(".thanks_list_view")
-        .html(thankedUsersList);
+    $POSTBODY_THREAD_REF.find(".thanks_list_view").html(thankedUsersList);
   }
 
   async function getThanksDataForThread() {
@@ -95,15 +93,15 @@ $(document).ready(function() {
       forum_link: CURRENT_FORUM_LINK,
       topic_id: CURRENT_TOPIC_ID,
       user_id: AUTHED_USER_ENUM.USER_ID,
-      user_name: AUTHED_USER_ENUM.USER_NAME
+      user_name: AUTHED_USER_ENUM.USER_NAME,
     };
 
     const response = await fetch(API_URI, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(thanksData)
+      body: JSON.stringify(thanksData),
     });
 
     const { data } = await response.json();
