@@ -1,0 +1,10 @@
+{
+  "name": "esm-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "es-module-lexer": "^0.9.3"
+  }
+}
